@@ -32,8 +32,8 @@ import org.springframework.security.web.SecurityFilterChain;
 <span class="nc" id="L32">        http.formLogin(AbstractAuthenticationFilterConfigurer::permitAll</span>
                 )
 <span class="nc" id="L34">                .logout(logout -&gt; logout</span>
-<span class="nc" id="L35">                        .logoutUrl(&quot;/logout&quot;)</span>
-<span class="nc" id="L36">                        .logoutSuccessUrl(&quot;/login&quot;)</span>
+<span class="nc" id="L35">                        .logoutUrl(&quot;/app-logout&quot;)</span>
+<span class="nc" id="L36">                        .logoutSuccessUrl(&quot;/&quot;)</span>
 <span class="nc" id="L37">                        .invalidateHttpSession(true)</span>
 <span class="nc" id="L38">                        .deleteCookies(&quot;JSESSIONID&quot;)</span>
 <span class="nc" id="L39">                        .permitAll()</span>

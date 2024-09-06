@@ -9,42 +9,42 @@ import org.springframework.validation.BindingResult;
 
 import java.util.List;
 @Service
-<span class="nc" id="L12">public class CurvePointService {</span>
+<span class="fc" id="L12">public class CurvePointService {</span>
     @Autowired
     private CurvePointRepository curvePointRepository;
 
     public String homeService(Model model) {
-<span class="nc" id="L17">        List&lt;CurvePoint&gt; curvePoints = curvePointRepository.findAll();</span>
-<span class="nc" id="L18">        model.addAttribute(&quot;curvePoints&quot;, curvePoints);</span>
-<span class="nc" id="L19">        return &quot;curvePoint/list&quot;;</span>
+<span class="fc" id="L17">        List&lt;CurvePoint&gt; curvePoints = curvePointRepository.findAll();</span>
+<span class="fc" id="L18">        model.addAttribute(&quot;curvePoints&quot;, curvePoints);</span>
+<span class="fc" id="L19">        return &quot;curvePoint/list&quot;;</span>
     }
     public String validateService(CurvePoint curvePoint, BindingResult result, Model model) {
-<span class="nc bnc" id="L22" title="All 2 branches missed.">        if (result.hasErrors()) {</span>
-<span class="nc" id="L23">            return &quot;curvePoint/add&quot;;</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if (result.hasErrors()) {</span>
+<span class="fc" id="L23">            return &quot;curvePoint/add&quot;;</span>
         }
-<span class="nc" id="L25">        curvePointRepository.save(curvePoint);</span>
-<span class="nc" id="L26">        return &quot;redirect:/curvePoint/list&quot;;</span>
+<span class="fc" id="L25">        curvePointRepository.save(curvePoint);</span>
+<span class="fc" id="L26">        return &quot;redirect:/curvePoint/list&quot;;</span>
     }
     public String showUpdateFormService(Integer id, Model model) {
-<span class="nc" id="L29">        CurvePoint curvePoint = curvePointRepository.findById(id).orElseThrow(() -&gt; new RuntimeException(&quot;existing curve not found&quot;));</span>
-<span class="nc" id="L30">        model.addAttribute(&quot;curvePoint&quot;, curvePoint);</span>
-<span class="nc" id="L31">        return &quot;curvePoint/update&quot;;</span>
+<span class="pc" id="L29">        CurvePoint curvePoint = curvePointRepository.findById(id).orElseThrow(() -&gt; new RuntimeException(&quot;existing curve not found&quot;));</span>
+<span class="fc" id="L30">        model.addAttribute(&quot;curvePoint&quot;, curvePoint);</span>
+<span class="fc" id="L31">        return &quot;curvePoint/update&quot;;</span>
     }
     public String updateBidService(Integer id, CurvePoint curvePoint,
                             BindingResult result, Model model) {
-<span class="nc bnc" id="L35" title="All 2 branches missed.">        if (result.hasErrors()) {</span>
-<span class="nc" id="L36">            model.addAttribute(&quot;curvePoint&quot;, curvePoint);</span>
-<span class="nc" id="L37">            return &quot;curvePoint/update&quot;;</span>
-<span class="nc bnc" id="L38" title="All 2 branches missed.">        }if (!id.equals(curvePoint.getId())) {</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (result.hasErrors()) {</span>
+<span class="fc" id="L36">            model.addAttribute(&quot;curvePoint&quot;, curvePoint);</span>
+<span class="fc" id="L37">            return &quot;curvePoint/update&quot;;</span>
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">        }if (!id.equals(curvePoint.getId())) {</span>
 <span class="nc" id="L39">            model.addAttribute(&quot;error&quot;, &quot;ID mismatch. Please try again.&quot;);</span>
 <span class="nc" id="L40">            return &quot;error&quot;;</span>
         }
-<span class="nc" id="L42">        curvePointRepository.save(curvePoint);</span>
-<span class="nc" id="L43">        return &quot;redirect:/curvePoint/list&quot;;</span>
+<span class="fc" id="L42">        curvePointRepository.save(curvePoint);</span>
+<span class="fc" id="L43">        return &quot;redirect:/curvePoint/list&quot;;</span>
     }
     public String deleteBidService(Integer id) {
-<span class="nc" id="L46">        curvePointRepository.deleteById(id);</span>
-<span class="nc" id="L47">        return &quot;redirect:/curvePoint/list&quot;;</span>
+<span class="fc" id="L46">        curvePointRepository.deleteById(id);</span>
+<span class="fc" id="L47">        return &quot;redirect:/curvePoint/list&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -15,41 +15,40 @@ import jakarta.validation.Valid;
 
 @Controller
 <span class="nc" id="L17">public class BidListController {</span>
-    // TODO: Inject Bid service
     @Autowired
     private BidService bidService;
 
     @RequestMapping(&quot;/bidList/list&quot;)
     public String home(Model model)
     {
-<span class="nc" id="L25">        return bidService.checkAllBids(model);</span>
+<span class="nc" id="L24">        return bidService.checkAllBids(model);</span>
     }
 
     @GetMapping(&quot;/bidList/add&quot;)
     public String addBidForm(BidList bid) {
-<span class="nc" id="L30">        return &quot;bidList/add&quot;;</span>
+<span class="nc" id="L29">        return &quot;bidList/add&quot;;</span>
     }
 
     @PostMapping(&quot;/bidList/validate&quot;)
     public String validate(@Valid BidList bid, BindingResult result, Model model) {
-<span class="nc" id="L35">        return bidService.validateService(bid, result, model);</span>
+<span class="nc" id="L34">        return bidService.validateService(bid, result, model);</span>
     }
 
     @GetMapping(&quot;/bidList/update/{id}&quot;)
     public String showUpdateForm(@PathVariable(&quot;id&quot;) Integer id, Model model) {
-<span class="nc" id="L40">        return bidService.showUpdateFormService(id, model);</span>
+<span class="nc" id="L39">        return bidService.showUpdateFormService(id, model);</span>
     }
 
     @PostMapping(&quot;/bidList/update/{id}&quot;)
     public String updateBid(@PathVariable(&quot;id&quot;) Integer id, @Valid BidList bidList,
                             BindingResult result, Model model) {
-<span class="nc" id="L46">        return bidService.updateBidService(id, bidList, result, model);</span>
+<span class="nc" id="L45">        return bidService.updateBidService(id, bidList, result, model);</span>
     }
 
 
     @GetMapping(&quot;/bidList/delete/{id}&quot;)
     public String deleteBid(@PathVariable(&quot;id&quot;) Integer id, Model model) {
-<span class="nc" id="L52">        return bidService.deleteBidService(id, model);</span>
+<span class="nc" id="L51">        return bidService.deleteBidService(id, model);</span>
     }
 
 }

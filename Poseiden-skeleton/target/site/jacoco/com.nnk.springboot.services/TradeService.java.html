@@ -8,50 +8,50 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
 @Service
-<span class="nc" id="L11">public class TradeService {</span>
+<span class="fc" id="L11">public class TradeService {</span>
     @Autowired
     private TradeRepository tradeRepository;
     public String homeService(Model model) {
-<span class="nc" id="L15">        model.addAttribute(&quot;trades&quot;, tradeRepository.findAll());</span>
-<span class="nc" id="L16">        return &quot;trade/list&quot;;</span>
+<span class="fc" id="L15">        model.addAttribute(&quot;trades&quot;, tradeRepository.findAll());</span>
+<span class="fc" id="L16">        return &quot;trade/list&quot;;</span>
     }
     public String validateService(Trade trade, BindingResult result, Model model) {
-<span class="nc bnc" id="L19" title="All 2 branches missed.">        if (result.hasErrors()) {</span>
-<span class="nc" id="L20">            return &quot;trade/add&quot;;</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">        if (result.hasErrors()) {</span>
+<span class="fc" id="L20">            return &quot;trade/add&quot;;</span>
         }
-<span class="nc" id="L22">        tradeRepository.save(trade);</span>
-<span class="nc" id="L23">        return &quot;redirect:/trade/list&quot;;</span>
+<span class="fc" id="L22">        tradeRepository.save(trade);</span>
+<span class="fc" id="L23">        return &quot;redirect:/trade/list&quot;;</span>
     }
     public String showUpdateFormService(Integer id, Model model) {
-<span class="nc" id="L26">        Trade trade = tradeRepository.findById(id).orElseThrow(() -&gt; new RuntimeException(&quot;existing trade not found&quot;));;</span>
-<span class="nc bnc" id="L27" title="All 2 branches missed.">        if (trade == null) {</span>
+<span class="fc" id="L26">        Trade trade = tradeRepository.findById(id).orElseThrow(() -&gt; new RuntimeException(&quot;existing trade not found&quot;));;</span>
+<span class="pc bpc" id="L27" title="1 of 2 branches missed.">        if (trade == null) {</span>
 <span class="nc" id="L28">            model.addAttribute(&quot;error&quot;, &quot;Trade not found with ID: &quot; + id);</span>
 <span class="nc" id="L29">            return &quot;error&quot;;</span>
         }
-<span class="nc" id="L31">        model.addAttribute(&quot;trade&quot;, trade);</span>
-<span class="nc" id="L32">        return &quot;trade/update&quot;;</span>
+<span class="fc" id="L31">        model.addAttribute(&quot;trade&quot;, trade);</span>
+<span class="fc" id="L32">        return &quot;trade/update&quot;;</span>
     }
     public String updateTradeService(Integer id, Trade trade,
                               BindingResult result, Model model) {
-<span class="nc bnc" id="L36" title="All 2 branches missed.">        if (result.hasErrors()) {</span>
-<span class="nc" id="L37">            return &quot;trade/update&quot;;</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if (result.hasErrors()) {</span>
+<span class="fc" id="L37">            return &quot;trade/update&quot;;</span>
         }
-<span class="nc bnc" id="L39" title="All 2 branches missed.">        if (!id.equals(trade.getTradeId())) {</span>
+<span class="pc bpc" id="L39" title="1 of 2 branches missed.">        if (!id.equals(trade.getTradeId())) {</span>
 <span class="nc" id="L40">            model.addAttribute(&quot;error&quot;, &quot;ID mismatch. Please try again.&quot;);</span>
 <span class="nc" id="L41">            return &quot;error&quot;;</span>
         }
 
-<span class="nc" id="L44">        tradeRepository.save(trade);</span>
-<span class="nc" id="L45">        return &quot;redirect:/trade/list&quot;;</span>
+<span class="fc" id="L44">        tradeRepository.save(trade);</span>
+<span class="fc" id="L45">        return &quot;redirect:/trade/list&quot;;</span>
     }
     public String deleteTradeService(Integer id, Model model) {
         try {
-<span class="nc" id="L49">            tradeRepository.deleteById(id);</span>
-<span class="nc" id="L50">        } catch (Exception e) {</span>
-<span class="nc" id="L51">            model.addAttribute(&quot;error&quot;, &quot;Trade not found or could not be deleted.&quot;);</span>
-<span class="nc" id="L52">            return &quot;error&quot;;</span>
-<span class="nc" id="L53">        }</span>
-<span class="nc" id="L54">        return &quot;redirect:/trade/list&quot;;</span>
+<span class="fc" id="L49">            tradeRepository.deleteById(id);</span>
+<span class="fc" id="L50">        } catch (Exception e) {</span>
+<span class="fc" id="L51">            model.addAttribute(&quot;error&quot;, &quot;Trade not found or could not be deleted.&quot;);</span>
+<span class="fc" id="L52">            return &quot;error&quot;;</span>
+<span class="fc" id="L53">        }</span>
+<span class="fc" id="L54">        return &quot;redirect:/trade/list&quot;;</span>
     }
 
 }

@@ -8,49 +8,49 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
 @Service
-<span class="nc" id="L11">public class RatingService {</span>
+<span class="fc" id="L11">public class RatingService {</span>
     @Autowired
     private RatingRepository ratingRepository;
     public String homeService(Model model) {
-<span class="nc" id="L15">        model.addAttribute(&quot;ratings&quot;, ratingRepository.findAll());</span>
-<span class="nc" id="L16">        return &quot;rating/list&quot;;</span>
+<span class="fc" id="L15">        model.addAttribute(&quot;ratings&quot;, ratingRepository.findAll());</span>
+<span class="fc" id="L16">        return &quot;rating/list&quot;;</span>
     }
     public String validateService(Rating rating, BindingResult result, Model model) {
-<span class="nc bnc" id="L19" title="All 2 branches missed.">        if (result.hasErrors()) {</span>
-<span class="nc" id="L20">            return &quot;rating/add&quot;;</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">        if (result.hasErrors()) {</span>
+<span class="fc" id="L20">            return &quot;rating/add&quot;;</span>
         }
-<span class="nc" id="L22">        ratingRepository.save(rating);</span>
-<span class="nc" id="L23">        return &quot;redirect:/rating/list&quot;;</span>
+<span class="fc" id="L22">        ratingRepository.save(rating);</span>
+<span class="fc" id="L23">        return &quot;redirect:/rating/list&quot;;</span>
     }
     public String showUpdateFormService(Integer id, Model model) {
-<span class="nc" id="L26">        Rating rating = ratingRepository.findById(id).orElseThrow(() -&gt; new RuntimeException(&quot;existing rating not found&quot;));</span>
-<span class="nc bnc" id="L27" title="All 2 branches missed.">        if (rating == null) {</span>
+<span class="fc" id="L26">        Rating rating = ratingRepository.findById(id).orElseThrow(() -&gt; new RuntimeException(&quot;existing rating not found&quot;));</span>
+<span class="pc bpc" id="L27" title="1 of 2 branches missed.">        if (rating == null) {</span>
 <span class="nc" id="L28">            model.addAttribute(&quot;error&quot;, &quot;Rating not found with ID: &quot; + id);</span>
 <span class="nc" id="L29">            return &quot;error&quot;;</span>
         }
-<span class="nc" id="L31">        model.addAttribute(&quot;rating&quot;, rating);</span>
-<span class="nc" id="L32">        return &quot;rating/update&quot;;</span>
+<span class="fc" id="L31">        model.addAttribute(&quot;rating&quot;, rating);</span>
+<span class="fc" id="L32">        return &quot;rating/update&quot;;</span>
     }
     public String updateRatingService(Integer id, Rating rating,
                                BindingResult result, Model model) {
-<span class="nc bnc" id="L36" title="All 2 branches missed.">        if (result.hasErrors()) {</span>
-<span class="nc" id="L37">            return &quot;rating/update&quot;;</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if (result.hasErrors()) {</span>
+<span class="fc" id="L37">            return &quot;rating/update&quot;;</span>
         }
-<span class="nc bnc" id="L39" title="All 2 branches missed.">        if (!id.equals(rating.getId())) {</span>
+<span class="pc bpc" id="L39" title="1 of 2 branches missed.">        if (!id.equals(rating.getId())) {</span>
 <span class="nc" id="L40">            model.addAttribute(&quot;error&quot;, &quot;ID mismatch. Please try again.&quot;);</span>
 <span class="nc" id="L41">            return &quot;error&quot;;</span>
         }
-<span class="nc" id="L43">        ratingRepository.save(rating);</span>
-<span class="nc" id="L44">        return &quot;redirect:/rating/list&quot;;</span>
+<span class="fc" id="L43">        ratingRepository.save(rating);</span>
+<span class="fc" id="L44">        return &quot;redirect:/rating/list&quot;;</span>
     }
     public String deleteRatingService(Integer id, Model model) {
         try {
-<span class="nc" id="L48">            ratingRepository.deleteById(id);</span>
-<span class="nc" id="L49">        } catch (Exception e) {</span>
-<span class="nc" id="L50">            model.addAttribute(&quot;error&quot;, &quot;Rating not found or could not be deleted.&quot;);</span>
-<span class="nc" id="L51">            return &quot;error&quot;;</span>
-<span class="nc" id="L52">        }</span>
-<span class="nc" id="L53">        return &quot;redirect:/rating/list&quot;;</span>
+<span class="fc" id="L48">            ratingRepository.deleteById(id);</span>
+<span class="fc" id="L49">        } catch (Exception e) {</span>
+<span class="fc" id="L50">            model.addAttribute(&quot;error&quot;, &quot;Rating not found or could not be deleted.&quot;);</span>
+<span class="fc" id="L51">            return &quot;error&quot;;</span>
+<span class="fc" id="L52">        }</span>
+<span class="fc" id="L53">        return &quot;redirect:/rating/list&quot;;</span>
     }
 
 }

@@ -11,46 +11,46 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-<span class="nc" id="L14">public class BidService {</span>
+<span class="fc" id="L14">public class BidService {</span>
     @Autowired
     private BidListRepository bidListRepository;
     public String checkAllBids(Model model){
-<span class="nc" id="L18">        List&lt;BidList&gt; bidList = bidListRepository.findAll();</span>
-<span class="nc" id="L19">        model.addAttribute(&quot;bidlists&quot;, bidList);</span>
-<span class="nc" id="L20">        return &quot;bidList/list&quot;;</span>
+<span class="fc" id="L18">        List&lt;BidList&gt; bidList = bidListRepository.findAll();</span>
+<span class="fc" id="L19">        model.addAttribute(&quot;bidlists&quot;, bidList);</span>
+<span class="fc" id="L20">        return &quot;bidList/list&quot;;</span>
     }
     public String validateService( BidList bid, BindingResult result, Model model) {
-<span class="nc bnc" id="L23" title="All 2 branches missed.">        if (result.hasErrors()) {</span>
-<span class="nc" id="L24">            return &quot;bidList/add&quot;;</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">        if (result.hasErrors()) {</span>
+<span class="fc" id="L24">            return &quot;bidList/add&quot;;</span>
         }
-<span class="nc" id="L26">        bidListRepository.save(bid);</span>
-<span class="nc" id="L27">        return &quot;redirect:/bidList/list&quot;;</span>
+<span class="fc" id="L26">        bidListRepository.save(bid);</span>
+<span class="fc" id="L27">        return &quot;redirect:/bidList/list&quot;;</span>
     }
 
     public String showUpdateFormService(Integer id, Model model) {
-<span class="nc" id="L31">        Optional&lt;BidList&gt; bid = bidListRepository.findById(id);</span>
-<span class="nc" id="L32">        model.addAttribute(&quot;bid&quot;, bid);</span>
-<span class="nc" id="L33">        return &quot;bidList/update&quot;;</span>
+<span class="fc" id="L31">        Optional&lt;BidList&gt; bid = bidListRepository.findById(id);</span>
+<span class="fc" id="L32">        model.addAttribute(&quot;bid&quot;, bid);</span>
+<span class="fc" id="L33">        return &quot;bidList/update&quot;;</span>
     }
 
     public String updateBidService(Integer id, BidList bidList,
                             BindingResult result, Model model) {
-<span class="nc bnc" id="L38" title="All 2 branches missed.">        if (result.hasErrors()) {</span>
-<span class="nc" id="L39">            model.addAttribute(&quot;bidList&quot;, bidList);</span>
-<span class="nc" id="L40">            return &quot;bidList/update&quot;;</span>
-<span class="nc bnc" id="L41" title="All 2 branches missed.">        }if (!id.equals(bidList.getBidListId())) {</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if (result.hasErrors()) {</span>
+<span class="fc" id="L39">            model.addAttribute(&quot;bidList&quot;, bidList);</span>
+<span class="fc" id="L40">            return &quot;bidList/update&quot;;</span>
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">        }if (!id.equals(bidList.getBidListId())) {</span>
 <span class="nc" id="L42">            model.addAttribute(&quot;error&quot;, &quot;ID mismatch. Please try again.&quot;);</span>
 <span class="nc" id="L43">            return &quot;error&quot;;</span>
         }
-<span class="nc" id="L45">        bidListRepository.save(bidList);</span>
+<span class="fc" id="L45">        bidListRepository.save(bidList);</span>
 
-<span class="nc" id="L47">        return &quot;redirect:/bidList/list&quot;;</span>
+<span class="fc" id="L47">        return &quot;redirect:/bidList/list&quot;;</span>
     }
 
 
     public String deleteBidService(Integer id, Model model) {
-<span class="nc" id="L52">        bidListRepository.deleteById(id);</span>
-<span class="nc" id="L53">        return &quot;redirect:/bidList/list&quot;;</span>
+<span class="fc" id="L52">        bidListRepository.deleteById(id);</span>
+<span class="fc" id="L53">        return &quot;redirect:/bidList/list&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -3,19 +3,26 @@
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Aspect
 @Component
-<span class="nc" id="L12">public class LoggingAspect {</span>
+<span class="nc" id="L14">public class LoggingAspect {</span>
 
-<span class="nc" id="L14">    private static final Logger logger = LoggerFactory.getLogger(LoggingAspect.class);</span>
+<span class="nc" id="L16">    private static final Logger logger = LoggerFactory.getLogger(LoggingAspect.class);</span>
 
     @AfterReturning(&quot;execution(* com.nnk.springboot.controllers..*(..))&quot;)
     public void logAfter(JoinPoint joinPoint) {
-<span class="nc" id="L18">        logger.info(&quot;User accessed method: &quot; + joinPoint.getSignature().toShortString());</span>
-<span class="nc" id="L19">    }</span>
+<span class="nc" id="L20">        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();</span>
+<span class="nc bnc" id="L21" title="All 4 branches missed.">        String username = (authentication != null &amp;&amp; authentication.isAuthenticated()) ?</span>
+<span class="nc" id="L22">                authentication.getName() : &quot;Guest&quot;;</span>
+
+<span class="nc" id="L24">        logger.info(&quot;User '{}' accessed method: {}&quot;, username, joinPoint.getSignature().toShortString());</span>
+<span class="nc" id="L25">    }</span>
 }
+
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
